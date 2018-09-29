@@ -1,0 +1,88 @@
+# Juego.canvas.parte.2
+Parte 2
+Para continuar, tenemos que eliminar todo lo que está en el script excepto las dos primeras lineas y agregarle lo siguiente:
+
+function draw() {
+    // código para dibujar
+}
+setInterval(draw, 15);
+
+Para dibujar la bola agrega lo siguiente a la función draw()
+  
+  ctx.beginPath();
+  ctx.arc(60, 60, 15, 0, Math.PI*2);
+  ctx.fillStyle = "#800080";
+  ctx.fill();
+  ctx.closePath();
+  
+Prueba tu código.
+
+Agrega las dos siguientes lineas antes de la función draw()
+  
+   var x = canvas.width/3;
+   var y = canvas.height-40;
+
+Actualiza la función draw() de la siguiente manera:
+  
+  ctx.beginPath();
+  ctx.arc(x, y, 15, 0, Math.PI*2);
+  ctx.fillStyle = "#800080";
+  ctx.fill();
+  ctx.closePath();
+   
+Necesitamos agregar un valor pequeño al fotograma para que parezca que la bola se está moviendo, agrega las siguientes lineas debajo de sus respectivas variables x, y
+
+  var dx = 3;
+  var dy = -3;
+  
+Agrega las dos siguientes lineas a la función draw()
+
+   x += dx;
+   y += dy;
+ 
+Prueba tu código.
+   
+Para borrar el rastro que nos deja la bola en el lienzo, agrega el siguiente código empezando la función draw()
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+Prueba tu código.
+
+Vamos a limpiar un poco el código, reemplaza la función draw() con las dos siguientes:
+
+function drawBall(){
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, Math.PI*2);
+    ctx.fillStyle = "#800080";
+    ctx.fill();
+    ctx.closePath();
+    }
+    function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+     x += dx;
+     y += dy;
+    }
+    
+Compara tu código
+
+   var canvas = document.getElementById("myCanvas");
+   var ctx = canvas.getContext("2d");
+   var x = canvas.width/3;
+   var y = canvas.height-40;
+   var dx = 3;
+   var dy = -3;
+   function drawBall(){
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI*2);
+        ctx.fillStyle = "#800080";
+        ctx.fill();
+        ctx.closePath();
+    }
+    function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+     x += dx;
+     y += dy;
+    }
+setInterval(draw, 15);
